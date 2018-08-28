@@ -1,0 +1,88 @@
+<h1>
+  Contact Details
+</h1>
+
+<form [formGroup]="profileForm" class="example-form">
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" formControlName="firstName">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <mat-form-field>
+              <mat-select placeholder="Gender" formControlName="gender">
+                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                  {{gender.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </td>
+      <td>
+          <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" formControlName="dob">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </td>
+    </tr>
+
+  </table>
+  <p>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Address" formControlName="address"></textarea>
+      </mat-form-field>
+    </p>
+
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <input matInput placeholder="City" formControlName="city">
+      </mat-form-field></td>
+      <td>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="State" formControlName="state">
+                <mat-option *ngFor="let state of states" [value]="state.value">
+                  {{state.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </td>
+      <td><mat-form-field class="example-full-width">
+        <input matInput #postalCode maxlength="5" placeholder="Postal Code" formControlName="zip">
+        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+      </mat-form-field></td>
+    </tr></table>
+  <p>
+      <mat-form-field class="example-full-width">
+        <input type="tel" matInput placeholder="Home Phone" formControlName="homePhone">
+      </mat-form-field>
+  </p>
+  <p>
+      <mat-form-field class="example-full-width">
+        <input type="tel" matInput placeholder="Mobile Phone" formControlName="mobilePhone">
+      </mat-form-field>
+  </p>
+  <p>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [formControl]="emailFormControl"
+                [errorStateMatcher]="matcher" formControlName="email">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  </p>
+
+</form>
+

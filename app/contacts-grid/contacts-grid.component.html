@@ -56,8 +56,9 @@
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                [routerLink]="['/contact', row.contId]"></tr>
   </table>
     
-  <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[20, 50]" showFirstLastButtons></mat-paginator>
 </div>

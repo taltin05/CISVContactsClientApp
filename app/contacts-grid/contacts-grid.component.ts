@@ -1,4 +1,4 @@
-import { Component,  OnInit, Input, ViewChild } from '@angular/core';
+import { Component,  OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ContactService } from '../contact.service';
 
@@ -25,5 +25,4 @@ export class ContactsGridComponent implements OnInit {
     this.contactsData.paginator = this.paginator;
   }
 
-  
 }
