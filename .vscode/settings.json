@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d65833f5-acc0-4d0c-9a89-d7010facc08a/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/CISVContactManagement",
+    "appService.deploySubpath": ""
+}

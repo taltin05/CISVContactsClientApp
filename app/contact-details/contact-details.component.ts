@@ -60,7 +60,6 @@ export class ContactDetailsComponent implements OnInit {
     this.contactService.getSingle(this.id).subscribe(
       (data:any) => {
         this.contact = data;
-        console.log(this.contact);
         this.profileForm.patchValue({
           firstName: this.contact.firstName,
           lastName: this.contact.lastName,

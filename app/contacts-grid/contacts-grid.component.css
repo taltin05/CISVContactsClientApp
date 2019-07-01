@@ -6,3 +6,7 @@ table {
   background-color :#e0741a;
   cursor: pointer;
 }
+
+th.mat-sort-header-sorted {
+  color: black;
+}
