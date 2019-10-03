@@ -27,11 +27,11 @@ export class ContactService {
   }
 
   public remove(payload) {
-    return this.http.delete(this.accessPointUrl + '/' + payload.id, {headers: this.headers});
+    return this.http.delete(this.accessPointUrl + '/' + payload.contId, {headers: this.headers});
   }
 
   public update(payload) {
-    return this.http.put(this.accessPointUrl + '/' + payload.id, payload, {headers: this.headers});
+    return this.http.put(this.accessPointUrl + '/' + payload.contId, payload, {headers: this.headers});
   }
   
 }

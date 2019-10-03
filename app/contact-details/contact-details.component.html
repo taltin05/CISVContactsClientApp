@@ -8,12 +8,22 @@
     <tr>
       <td>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="First name" formControlName="firstName">
+          <input matInput placeholder="First name"  [formControl]="firstnameFormControl" required>
+          
+          <mat-error *ngIf="firstnameFormControl.hasError('required')">
+            First name is <strong>required</strong>
+          </mat-error>
+
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Last Name" formControlName="lastName">
+          <input matInput placeholder="Last Name" [formControl]="lastnameFormControl" required>
+
+          <mat-error *ngIf="lastnameFormControl.hasError('required')">
+            Last name is <strong>required</strong>
+          </mat-error>
+
         </mat-form-field>
       </td>
     </tr>
@@ -39,26 +49,46 @@
   </table>
   <p>
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Address" formControlName="address"></textarea>
+        <textarea matInput placeholder="Address" [formControl]="addressFormControl" required></textarea>
+
+        <mat-error *ngIf="addressFormControl.hasError('required')">
+          Address is <strong>required</strong>
+        </mat-error>
+
       </mat-form-field>
     </p>
 
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width">
-        <input matInput placeholder="City" formControlName="city">
+        <input matInput placeholder="City" [formControl]="cityFormControl" required>
+        
+        <mat-error *ngIf="cityFormControl.hasError('required')">
+          City is <strong>required</strong>
+        </mat-error>
+
       </mat-form-field></td>
       <td>
         <mat-form-field class="example-full-width">
-            <mat-select placeholder="State" formControlName="state">
+            <mat-select placeholder="State" [formControl]="stateFormControl" required>
                 <mat-option *ngFor="let state of states" [value]="state.value">
                   {{state.viewValue}}
                 </mat-option>
             </mat-select>
+
+            <mat-error *ngIf="stateFormControl.hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+
         </mat-form-field>
       </td>
       <td><mat-form-field class="example-full-width">
-        <input matInput #postalCode maxlength="5" placeholder="Postal Code" formControlName="zip">
+        <input matInput #postalCode maxlength="5" placeholder="Postal Code" [formControl]="zipFormControl" required>
         <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+        
+        <mat-error *ngIf="zipFormControl.hasError('required')">
+          City is <strong>required</strong>
+        </mat-error>
+
       </mat-form-field></td>
     </tr></table>
   <p>
@@ -73,16 +103,18 @@
   </p>
   <p>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" [formControl]="emailFormControl"
-                [errorStateMatcher]="matcher" formControlName="email">
+        <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Please enter a valid email address
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
+
       </mat-form-field>
   </p>
+  <p>
+    <mat-checkbox type="checkbox" placeholder="Fundraising" formControlName="fundraising">Contact for Fundraising</mat-checkbox>
+  </p>
 
+  <button (click)="saveButtonClicked()" routerLink="" [disabled]="profileForm.invalid">Save</button>
 </form>
 

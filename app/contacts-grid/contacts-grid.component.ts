@@ -31,4 +31,5 @@ export class ContactsGridComponent implements OnInit {
   public doFilter = (value: string) => {
     this.contactsData.filter = value.trim().toLocaleLowerCase();
   }
+
 }

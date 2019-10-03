@@ -7,6 +7,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,7 +20,8 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'contact/:id', component: ContactDetailsComponent } 
+  { path: 'contact/:id', component: ContactDetailsComponent },
+  { path: 'contact', component: ContactDetailsComponent }, 
 ];
 
 
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule
   ],
