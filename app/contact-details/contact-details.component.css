@@ -8,3 +8,15 @@
     width: 100%;
   }
   
+  .example-half-width {
+    width: 48%;
+  }
+
+  .example-one-third-width {
+    width: 30%;
+  }
+
+  table {
+    width: 40%;
+  }
+    

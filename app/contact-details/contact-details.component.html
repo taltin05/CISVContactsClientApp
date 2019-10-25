@@ -6,121 +6,164 @@
 <mat-tab-group>
   <mat-tab label="DETAILS"> 
     <form [formGroup]="profileForm" class="example-form">
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="First name"  [formControl]="firstnameFormControl" required>
-            
-            <mat-error *ngIf="firstnameFormControl.hasError('required')">
-              First name is <strong>required</strong>
-            </mat-error>
-  
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Last Name" [formControl]="lastnameFormControl" required>
-  
-            <mat-error *ngIf="lastnameFormControl.hasError('required')">
-              Last name is <strong>required</strong>
-            </mat-error>
-  
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <mat-form-field>
-                <mat-select placeholder="Gender" formControlName="gender">
-                  <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                    {{gender.viewValue}}
-                  </mat-option>
-                </mat-select>
+    <br />&nbsp;&nbsp;
+
+    <mat-dialog-actions>
+        <button (click)="saveButtonClicked()" routerLink="" [disabled]="profileForm.invalid">Save</button>
+    </mat-dialog-actions><br /><br />
+
+    <div class="example-full-width">
+        <mat-dialog-content>
+            <mat-form-field class="example-half-width">
+                <input matInput placeholder="First name"  [formControl]="firstnameFormControl" required>
+                
+                <mat-error *ngIf="firstnameFormControl.hasError('required')">
+                  First name is <strong>required</strong>
+                </mat-error>
+      
               </mat-form-field>
-        </td>
-        <td>
-            <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" formControlName="dob">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-        </td>
-      </tr>
-  
-    </table>
-    <p>
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Address" [formControl]="addressFormControl" required></textarea>
-  
-          <mat-error *ngIf="addressFormControl.hasError('required')">
-            Address is <strong>required</strong>
-          </mat-error>
-  
-        </mat-form-field>
-      </p>
-  
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="City" [formControl]="cityFormControl" required>
+              &nbsp;&nbsp;
+              
+              <mat-form-field class="example-half-width">
+                  <input matInput placeholder="Last Name" [formControl]="lastnameFormControl" required>
+        
+                  <mat-error *ngIf="lastnameFormControl.hasError('required')">
+                    Last name is <strong>required</strong>
+                  </mat-error>
+        
+              </mat-form-field>
+              <p>
+                <mat-form-field class="example-half-width">
+                    <mat-select placeholder="Gender" formControlName="gender">
+                      <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                        {{gender.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                &nbsp;&nbsp;
+
+                <mat-form-field class="">
+                    <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" formControlName="dob">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </p>
+              
+              <p>
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Address" [formControl]="addressFormControl" required></textarea>
           
-          <mat-error *ngIf="cityFormControl.hasError('required')">
-            City is <strong>required</strong>
-          </mat-error>
-  
-        </mat-form-field></td>
-        <td>
-          <mat-form-field class="example-full-width">
-              <mat-select placeholder="State" [formControl]="stateFormControl" required>
-                  <mat-option *ngFor="let state of states" [value]="state.value">
-                    {{state.viewValue}}
-                  </mat-option>
-              </mat-select>
-  
-              <mat-error *ngIf="stateFormControl.hasError('required')">
-                City is <strong>required</strong>
-              </mat-error>
-  
-          </mat-form-field>
-        </td>
-        <td><mat-form-field class="example-full-width">
-          <input matInput #postalCode maxlength="5" placeholder="Postal Code" [formControl]="zipFormControl" required>
-          <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                  <mat-error *ngIf="addressFormControl.hasError('required')">
+                    Address is <strong>required</strong>
+                  </mat-error>
           
-          <mat-error *ngIf="zipFormControl.hasError('required')">
-            City is <strong>required</strong>
-          </mat-error>
-  
-        </mat-form-field></td>
-      </tr></table>
-    <p>
-        <mat-form-field class="example-full-width">
-          <input type="tel" matInput placeholder="Home Phone" formControlName="homePhone">
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field class="example-full-width">
-          <input type="tel" matInput placeholder="Mobile Phone" formControlName="mobilePhone">
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+                </mat-form-field>
+              </p>
+              <p>
+                  <mat-form-field class="example-one-third-width">
+                      <input matInput placeholder="City" [formControl]="cityFormControl" required>
+                      
+                      <mat-error *ngIf="cityFormControl.hasError('required')">
+                        City is <strong>required</strong>
+                      </mat-error>
+            
+                  </mat-form-field>
+                  &nbsp;
+                  <mat-form-field class="example-one-third-width">
+                      <mat-select placeholder="State" [formControl]="stateFormControl" required>
+                          <mat-option *ngFor="let state of states" [value]="state.value">
+                            {{state.viewValue}}
+                          </mat-option>
+                      </mat-select>
           
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-  
-        </mat-form-field>
-    </p>
-    <p>
-      <mat-checkbox type="checkbox" placeholder="Fundraising" formControlName="fundraising">Contact for Fundraising</mat-checkbox>
-    </p>
-  
-    <button (click)="saveButtonClicked()" routerLink="" [disabled]="profileForm.invalid">Save</button>
+                      <mat-error *ngIf="stateFormControl.hasError('required')">
+                        City is <strong>required</strong>
+                      </mat-error>
+          
+                  </mat-form-field>
+                  &nbsp;
+                  <mat-form-field class="example-one-third-width">
+                      <input matInput #postalCode maxlength="5" placeholder="Postal Code" [formControl]="zipFormControl" required>
+                      <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                      
+                      <mat-error *ngIf="zipFormControl.hasError('required')">
+                        City is <strong>required</strong>
+                      </mat-error>
+            
+                  </mat-form-field>      
+              </p>
+
+              <p>
+                  <mat-form-field class="example-half-width">
+                    <input type="tel" matInput placeholder="Home Phone" formControlName="homePhone">
+                  </mat-form-field>
+                  
+                  &nbsp;&nbsp;
+                  
+                  <mat-form-field class="example-half-width">
+                      <input type="tel" matInput placeholder="Mobile Phone" formControlName="mobilePhone">
+                  </mat-form-field>
+              </p>
+
+              <p>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+                    
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+            
+                  </mat-form-field>
+              </p>
+              
+              <p>
+                  <mat-checkbox type="checkbox" placeholder="Fundraising" formControlName="fundraising">Contact for Fundraising</mat-checkbox>
+              </p>
+        </mat-dialog-content>
+
+      </div>
   </form> 
   </mat-tab>
-  <mat-tab label="PROGRAM PARTICIPATION"> Content 2 </mat-tab>
+  <mat-tab label="PROGRAM PARTICIPATION"> 
+    <br />&nbsp;&nbsp;
+
+    <mat-dialog-actions>
+      <button (click)="addNewParticipation()">Add New</button>
+    </mat-dialog-actions>
+    <br /><br />
+    <hr />
+
+    <table mat-table  [dataSource]="participations">
+
+        <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef> Year </th>
+            <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="program">
+              <th mat-header-cell *matHeaderCellDef> Program </th>
+              <td mat-cell *matCellDef="let element"> {{element.program}} </td>
+            </ng-container>
+  
+          <ng-container matColumnDef="hostcity">
+            <th mat-header-cell *matHeaderCellDef> City </th>
+            <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+          </ng-container>
+      
+  
+          <ng-container matColumnDef="hostcounCode">
+            <th mat-header-cell *matHeaderCellDef> Country </th>
+            <td mat-cell *matCellDef="let element"> {{element.countryName}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+     
+   
+</mat-tab>
   <mat-tab label="RELATIONSHIPS"> Content 3 </mat-tab>
 </mat-tab-group>
 

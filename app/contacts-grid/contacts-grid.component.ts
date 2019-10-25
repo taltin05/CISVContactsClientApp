@@ -1,6 +1,6 @@
 import { Component,  OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { ContactService } from '../contact.service';
+import { ContactService } from '../services/contact.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class ContactsGridComponent implements OnInit {
   displayedColumns: string[] = ['lastName', 'firstName', 'gender', 'addr1', 'city', 'state', 'zip', 'homePhone', 'mobilePhone', 'email'];
   
   constructor(private contactService: ContactService) {  
-    contactService.get().subscribe(
+    contactService.getAllContacts().subscribe(
       (data:any) => {this.contactsData.data = data}
     );
   }

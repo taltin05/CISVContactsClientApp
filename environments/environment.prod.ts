@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://cisvcontactswebapi.azurewebsites.net/api/Conts'
+  apiUrl: 'https://cisvcontactswebapi.azurewebsites.net'
 };

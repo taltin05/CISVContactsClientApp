@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { formatDate } from "@angular/common";
-import { ContactService } from '../contact.service';
+import { ContactService } from '../services/contact.service';
+import { ParticipationService } from '../services/participation.service';
 import { IContact, Contact } from '../models/contact';
 import { GENDERS } from '../constants/genders';
 import { STATES } from '../constants/states';
+import { MatTableDataSource } from '@angular/material';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -27,7 +29,9 @@ export class ContactDetailsComponent implements OnInit {
 
   public id: any;
   public contact : IContact;
-  
+  participations = new MatTableDataSource<any>([]);
+  displayedColumns: string[] = ['year', 'program', 'hostcity', 'hostcounCode'];
+
   genders = GENDERS;
   states = STATES;
   
@@ -57,7 +61,9 @@ export class ContactDetailsComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private route: ActivatedRoute, private contactService: ContactService) {}
+  constructor(private route: ActivatedRoute, private contactService: ContactService, private participationService: ParticipationService) {
+    
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -66,7 +72,14 @@ export class ContactDetailsComponent implements OnInit {
 
     if (this.id != null)
     {
-      this.contactService.getSingle(this.id).subscribe(
+      this.participationService.getParticipationsForContact(this.id).subscribe(
+        (data:any) => { 
+          console.log('participations:', data);
+          this.participations.data = data; 
+        }
+      ) 
+
+      this.contactService.getContact(this.id).subscribe(
         (data:any) => {
           console.log('contact:', data);
           this.contact = data;
@@ -119,7 +132,7 @@ export class ContactDetailsComponent implements OnInit {
      
      console.log('contact:', contact);
 
-    this.contactService.add(contact).subscribe();
+    this.contactService.addContact(contact).subscribe();
   }
 
   saveContact() {
@@ -139,6 +152,10 @@ export class ContactDetailsComponent implements OnInit {
      contact.fundraising = this.profileForm.value.fundraising;
      contact.modifydatetime = formatDate(Date.now(), 'MM/dd/yyyy hh:mm:ss', 'en-US');
 
-     this.contactService.update(contact).subscribe();
+     this.contactService.updateContact(contact).subscribe();
+  }
+
+  addNewParticipation() {
+    
   }
 }
