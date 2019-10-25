@@ -14,11 +14,11 @@ import { MatTabsModule} from '@angular/material';
 import { MatDialogModule} from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { ContactsGridComponent } from './contacts-grid/contacts-grid.component';
-import { ContactDetailsComponent } from './contact-details/contact-details.component';
+import { ContactsGridComponent } from './components/contacts-grid/contacts-grid.component';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 
 import { ContactService } from './services/contact.service';
 import { ParticipationService } from './services/participation.service';

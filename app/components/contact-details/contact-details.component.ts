@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { formatDate } from "@angular/common";
-import { ContactService } from '../services/contact.service';
-import { ParticipationService } from '../services/participation.service';
-import { IContact, Contact } from '../models/contact';
-import { GENDERS } from '../constants/genders';
-import { STATES } from '../constants/states';
+import { ContactService } from '../../services/contact.service';
+import { ParticipationService } from '../../services/participation.service';
+import { IContact, Contact } from '../../models/contact';
+import { GENDERS } from '../../constants/genders';
+import { STATES } from '../../constants/states';
 import { MatTableDataSource } from '@angular/material';
 
 
