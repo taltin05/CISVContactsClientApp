@@ -22,11 +22,14 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 
 import { ContactService } from './services/contact.service';
 import { ParticipationService } from './services/participation.service';
+import { AddNewParticipationDialog } from './components/program-participation/add-new-participation-dialog.component';
+import { ProgramService } from './services/program.service';
+import { ParticipationsGridComponent } from './components/program-participation/participations-grid/participations-grid.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact/:id', component: ContactDetailsComponent },
-  { path: 'contact', component: ContactDetailsComponent }, 
+  { path: 'contact', component: ContactDetailsComponent }
 ];
 
 
@@ -35,7 +38,9 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     ContactsGridComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    AddNewParticipationDialog,
+    ParticipationsGridComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +63,10 @@ const appRoutes: Routes = [
   ],
   providers: [
     ContactService,
-    ParticipationService
+    ParticipationService,
+    ProgramService
   ],
+  entryComponents: [AddNewParticipationDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

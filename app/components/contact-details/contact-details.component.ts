@@ -4,12 +4,9 @@ import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '
 import { ErrorStateMatcher } from '@angular/material/core';
 import { formatDate } from "@angular/common";
 import { ContactService } from '../../services/contact.service';
-import { ParticipationService } from '../../services/participation.service';
 import { IContact, Contact } from '../../models/contact';
 import { GENDERS } from '../../constants/genders';
 import { STATES } from '../../constants/states';
-import { MatTableDataSource } from '@angular/material';
-
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -29,8 +26,6 @@ export class ContactDetailsComponent implements OnInit {
 
   public id: any;
   public contact : IContact;
-  participations = new MatTableDataSource<any>([]);
-  displayedColumns: string[] = ['year', 'program', 'hostcity', 'hostcounCode'];
 
   genders = GENDERS;
   states = STATES;
@@ -61,8 +56,7 @@ export class ContactDetailsComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private route: ActivatedRoute, private contactService: ContactService, private participationService: ParticipationService) {
-    
+  constructor(private route: ActivatedRoute, private contactService: ContactService) {    
   }
 
   ngOnInit() {
@@ -72,13 +66,7 @@ export class ContactDetailsComponent implements OnInit {
 
     if (this.id != null)
     {
-      this.participationService.getParticipationsForContact(this.id).subscribe(
-        (data:any) => { 
-          console.log('participations:', data);
-          this.participations.data = data; 
-        }
-      ) 
-
+     
       this.contactService.getContact(this.id).subscribe(
         (data:any) => {
           console.log('contact:', data);
@@ -155,7 +143,7 @@ export class ContactDetailsComponent implements OnInit {
      this.contactService.updateContact(contact).subscribe();
   }
 
-  addNewParticipation() {
-    
-  }
+
+
+
 }
