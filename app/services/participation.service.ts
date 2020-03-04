@@ -20,5 +20,8 @@ export class ParticipationService extends HttpService{
     return this.httpGet(`ParticipationsByContact/${contactId}`);
   }
 
+  public addNewParticipation(participation) {
+    return this.httpPost(participation);
+  }
 
 }

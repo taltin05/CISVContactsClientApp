@@ -1,34 +1,52 @@
 <h1 mat-dialog-title>Add New Program Participation</h1>
+<form [formGroup]="participationForm" (ngSubmit)="saveClicked()">
 <div mat-dialog-content>
   <mat-form-field class="example-one-third-width">
-    <input matInput [(ngModel)]="data.year" placeholder="Year">
+    <input matInput placeholder="Year" formControlName="year">
+    <mat-error *ngIf="year.hasError('required')">
+      Year is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
 </div>
 
 <div mat-dialog-content>
   <mat-form-field class="example-full-width">
-      <mat-select placeholder="Program" required>
+      <mat-select placeholder="Program" required formControlName="program">
           <mat-option *ngFor="let p of programs" [value]="p.progId">
             {{p.program}}
           </mat-option>
-      </mat-select>      
+      </mat-select>    
+      <mat-error *ngIf="program.hasError('required')">
+        Program is <strong>required</strong>
+      </mat-error>  
   </mat-form-field>  
 </div>
 
 
 <div mat-dialog-content>
   <mat-form-field class="example-half-width">
-    <input matInput [(ngModel)]="data.hostcity" placeholder="Host City">
+    <input matInput placeholder="Host City" formControlName="hostCity">
+    <mat-error *ngIf="hostCity.hasError('required')">
+      Host City is <strong>required</strong>
+    </mat-error> 
   </mat-form-field>
 </div>
 
 <div mat-dialog-content>
   <mat-form-field class="example-full-width">
-    <input matInput [(ngModel)]="data.hostcounCode" placeholder="Host Country">
+    <mat-select placeholder="Host Country" formControlName="hostCountry">
+      <mat-option *ngFor="let c of countries" [value]="c.counCode">
+        {{c.country}}
+      </mat-option>
+    </mat-select>  
+    <mat-error *ngIf="hostCountry.hasError('required')">
+      Host Country is <strong>required</strong>
+    </mat-error> 
   </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
   <button mat-button (click)="cancelClick()">Cancel</button>&nbsp;
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
+  <button mat-button [disabled]="participationForm.invalid">Save</button>
 </div>
+</form>

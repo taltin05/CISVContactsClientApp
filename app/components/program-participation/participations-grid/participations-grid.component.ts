@@ -4,6 +4,7 @@ import { ParticipationService } from '../../../services/participation.service';
 import { Participation } from '../../../models/participation';
 import { AddNewParticipationDialog } from '../add-new-participation-dialog.component';
 import { ActivatedRoute } from '@angular/router';
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: 'app-participations-grid',
@@ -22,26 +23,51 @@ export class ParticipationsGridComponent implements OnInit {
       this.contactid = params['id']
     });
     
+    this.loadParticipations();
+  }
+
+  addNewParticipation() : void {
+   
+
+    const dialogRef = this.dialog.open(AddNewParticipationDialog, {
+      width: '400px',
+      disableClose: true,
+      autoFocus: true,
+      data: {
+        contactid : this.contactid
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+        this.saveNewParticipation(data);
+    });
+
+  }
+
+  saveNewParticipation(data:any) : void {
+    var participation = new Participation;
+    
+    participation.contId = this.contactid;
+    participation.year =  data.year;
+    participation.progId = data.program;
+    participation.hostcity = data.hostCity;
+    participation.hostcounCode = data.hostCountry;
+    participation.createdatetime = formatDate(Date.now(), 'MM/dd/yyyy hh:mm:ss', 'en-US');
+    this.participationService.addNewParticipation(participation).subscribe(
+      () => {
+        this.loadParticipations();
+      }
+    );
+
+  }
+
+  loadParticipations() : void {
     this.participationService.getParticipationsForContact(this.contactid).subscribe(
       (data:any) => { 
         console.log('participations:', data);
         this.participations.data = data; 
       }
-    ) 
-  }
-
-  addNewParticipation() : void {
-    var participation = new Participation;
-
-    const dialogRef = this.dialog.open(AddNewParticipationDialog, {
-      width: '400px',
-      data: participation
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      
-    });
+    )
   }
 
 }

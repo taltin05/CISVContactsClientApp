@@ -19,12 +19,13 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactsGridComponent } from './components/contacts-grid/contacts-grid.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { AddNewParticipationDialog } from './components/program-participation/add-new-participation-dialog.component';
+import { ParticipationsGridComponent } from './components/program-participation/participations-grid/participations-grid.component';
 
 import { ContactService } from './services/contact.service';
 import { ParticipationService } from './services/participation.service';
-import { AddNewParticipationDialog } from './components/program-participation/add-new-participation-dialog.component';
 import { ProgramService } from './services/program.service';
-import { ParticipationsGridComponent } from './components/program-participation/participations-grid/participations-grid.component';
+import { CountryService } from './services/country.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
   providers: [
     ContactService,
     ParticipationService,
-    ProgramService
+    ProgramService,
+    CountryService
   ],
   entryComponents: [AddNewParticipationDialog],
   bootstrap: [AppComponent]
